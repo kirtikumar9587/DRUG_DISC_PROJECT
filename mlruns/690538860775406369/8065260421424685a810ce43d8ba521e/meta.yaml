@@ -1,0 +1,15 @@
+artifact_uri: file:///home/kirti/MLOPs/drug_disc_project/mlruns/690538860775406369/8065260421424685a810ce43d8ba521e/artifacts
+end_time: 1716997075247
+entry_point_name: ''
+experiment_id: '690538860775406369'
+lifecycle_stage: active
+run_id: 8065260421424685a810ce43d8ba521e
+run_name: enc_dec_drug_molecule_gen
+run_uuid: 8065260421424685a810ce43d8ba521e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1716997061479
+status: 3
+tags: []
+user_id: kirti

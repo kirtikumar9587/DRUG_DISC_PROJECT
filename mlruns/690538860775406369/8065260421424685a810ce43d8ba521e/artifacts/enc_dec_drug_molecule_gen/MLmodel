@@ -1,0 +1,20 @@
+artifact_path: enc_dec_drug_molecule_gen
+flavors:
+  python_function:
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.tensorflow
+    python_version: 3.10.12
+  tensorflow:
+    code: null
+    data: data
+    keras_version: 2.13.0
+    model_type: keras
+    save_format: tf
+mlflow_version: 2.12.2
+model_size_bytes: 1405156
+model_uuid: 29da4e86cec84cea9cb842fb263e3fde
+run_id: 8065260421424685a810ce43d8ba521e
+utc_time_created: '2024-05-29 15:37:41.521995'

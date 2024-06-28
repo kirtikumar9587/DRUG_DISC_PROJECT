@@ -1,0 +1,65 @@
+version: '3.7'
+
+
+services:
+  mysql:
+    build:
+      context: ./app_dockerfiles/ubuntu18.04_mysql_server
+      dockerfile: Dockerfile
+      network: host
+    container_name: mysql_container
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./app_data/mysql_db:/var/lib/mysql/db_mlflow
+    restart: always
+    networks:
+      custom_network:
+        aliases:
+          - mysql
+
+  mlflow:
+    build:
+      context: ./app_dockerfiles/ubuntu22.04_mlflow_server
+      dockerfile: Dockerfile
+      network: host
+    container_name: mlflow_container
+    ports:
+      - "5000:5000"
+    expose: 
+      - "5000"
+    depends_on:
+      - mysql
+    volumes:
+      - ./app_data/mlflow_tracked_data/mlruns:/mlruns
+    networks:
+      custom_network:
+        aliases:
+          - mlflow
+
+  model:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      network: host
+    container_name: drug_discovery
+    volumes:
+      - ./app_data/mlflow_tracked_data/mlruns:/app/drug_molecule_gen/mlruns
+    depends_on:
+      - mlflow
+    networks:
+      custom_network:
+        aliases:
+          - mlflow
+    #network_mode: "host"
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
+          gateway: 172.25.0.1
+    #dns:
+     # - 8.8.8.8
+     # - 8.8.4.4
