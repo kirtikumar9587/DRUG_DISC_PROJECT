@@ -29,7 +29,7 @@ RUN chmod +x /app/drug_molecule_gen/predict.py
 RUN chmod +x /app/main.py
 
 #ENTRYPOINT ["python3"]
-
+#remove both
 #CMD ["python3","./drug_molecule_gen/train_pipeline.py"]
 
 CMD pip install -e .
